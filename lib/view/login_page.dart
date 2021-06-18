@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
                     obscureText: true,
                   ),
                   Container(
-                    constraints: BoxConstraints(minWidth: 200),
+                    width: double.infinity,
                     margin: EdgeInsets.symmetric(vertical: 10),
                     child: ElevatedButton(
                         child: Text('GİRİŞ'),
@@ -68,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
             TextButton(
               child: Text(
                 '@2021',
-                style: TextStyle(color: Colors.pink.shade200, fontSize: 10),
+                style: TextStyle(color: Colors.grey, fontSize: 10),
               ),
               onPressed: () {
                 if (_password == Constants.passwordOne ||
