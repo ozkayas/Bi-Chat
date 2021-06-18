@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:json_serializable/json_serializable.dart';
 
 part 'message.g.dart';
@@ -11,10 +12,10 @@ class Message {
   final DateTime timestamp;
 
   Message(
-      {@required this.content,
-      @required this.idFrom,
-      @required this.idTo,
-      @required this.timestamp});
+      {required this.content,
+      required this.idFrom,
+      required this.idTo,
+      required this.timestamp});
 
   factory Message.fromJson(Map<String, dynamic> json) =>
       _$MessageFromJson(json);

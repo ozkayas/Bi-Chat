@@ -4,15 +4,15 @@ import '../constants.dart';
 import 'chat_page.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key key}) : super(key: key);
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String _name;
-  String _password;
+  late String _name;
+  late String _password;
 
   @override
   Widget build(BuildContext context) {
