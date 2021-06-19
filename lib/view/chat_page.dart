@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:bi_chat_app/model/message.dart';
 import 'package:bi_chat_app/service/database_service.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +21,7 @@ class _ChatPageState extends State<ChatPage> {
   late File imageFile; //To Store Image from Camera or Gallery
   late bool isLoading;
   late String imageUrl; //ImageURL from firebase Storage ??
+  Database db = Database();
 
   @override
   void initState() {
@@ -38,18 +40,26 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   Widget build(BuildContext context) {
-    Database db = Database();
-    db.messagesFromDb(1);
+    //db.getOneMessage();
     return Scaffold(
       body: Center(
         child: Column(
           children: [
-            Flexible(
-              flex: 12,
-              child: Container(
-                color: Colors.grey,
-              ),
-            ),
+            StreamBuilder<List<Message>>(
+                stream: db.messagesFromDb(2),
+                builder: (context, snapshot) {
+                  return (snapshot.hasData)
+                      ? Flexible(
+                          flex: 12,
+                          child: Container(
+                            color: Colors.grey,
+                            child: Text(snapshot.data!.first.content),
+                          ),
+                        )
+                      : Flexible(
+                          flex: 12,
+                          child: Center(child: CircularProgressIndicator()));
+                }),
             Flexible(
               flex: 1,
               child: Container(

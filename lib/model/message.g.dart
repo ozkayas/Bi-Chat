@@ -11,7 +11,8 @@ Message _$MessageFromJson(Map<String, dynamic> json) {
     content: json['content'] as String,
     idFrom: json['idFrom'] as String,
     idTo: json['idTo'] as String,
-    timestamp: DateTime.parse(json['timestamp'] as String),
+    timestamp:
+        const TimestampConverter().fromJson(json['timestamp'] as Timestamp),
   );
 }
 
@@ -19,5 +20,5 @@ Map<String, dynamic> _$MessageToJson(Message instance) => <String, dynamic>{
       'content': instance.content,
       'idFrom': instance.idFrom,
       'idTo': instance.idTo,
-      'timestamp': instance.timestamp.toIso8601String(),
+      'timestamp': const TimestampConverter().toJson(instance.timestamp),
     };
