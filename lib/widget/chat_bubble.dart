@@ -16,13 +16,20 @@ class BubbleCard extends StatelessWidget {
     Alignment _alignment =
         message.idFrom == userId ? Alignment.centerRight : Alignment.centerLeft;
     Color _textColor = message.idFrom == userId ? Colors.white : Colors.black;
+    EdgeInsets _margin = message.idFrom == userId
+        ? EdgeInsets.only(left: 50, right: 10, top: 4, bottom: 4)
+        : EdgeInsets.only(left: 10, right: 50, top: 4, bottom: 4);
 
-    return Card(
-      color: _color,
-      child: Container(
-          alignment: _alignment,
-          child: Text(message.content,
-              style: TextStyle(fontSize: 20, color: _textColor))),
-    );
+    return Container(
+        alignment: _alignment,
+        child: Text(
+          message.content,
+          style: TextStyle(fontSize: 20, color: _textColor),
+        ),
+        //width: 200.0,
+        margin: _margin,
+        padding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
+        decoration: BoxDecoration(
+            color: _color, borderRadius: BorderRadius.circular(10.0)));
   }
 }

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:bi_chat_app/model/message.dart';
 import 'package:bi_chat_app/service/database_service.dart';
+import 'package:bi_chat_app/widget/chat_bubble.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
@@ -47,13 +48,23 @@ class _ChatPageState extends State<ChatPage> {
           children: [
             Expanded(
               child: StreamBuilder<List<Message>>(
-                  stream: db.messagesFromDb(1),
+                  stream: db.messagesFromDb(20),
                   builder: (context, snapshot) {
-                    return (snapshot.hasData)
-                        ? ListView(
-                            children: [Text(snapshot.data!.first.content)],
-                          )
-                        : Center(child: CircularProgressIndicator());
+                    if (snapshot.hasData) {
+                      List<Message> messages = snapshot.data!;
+                      return ListView.builder(
+                        itemCount: messages.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return BubbleCard(
+                            userId: id,
+                            message: messages[index],
+                          );
+                        },
+                        //children: [Text(snapshot.data!.first.content)],
+                      );
+                    } else {
+                      return Center(child: CircularProgressIndicator());
+                    }
                   }),
             ),
             Container(
