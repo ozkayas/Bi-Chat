@@ -6,6 +6,9 @@ class Constants {
   static final String passwordOne = 'abc';
   static final String passwordTwo = 'xyz';
 
+  ///Database paths
+  static final rootPath = 'messages';
+
   ///Colors:
   static final primaryColor = Color(0xff203152);
 }

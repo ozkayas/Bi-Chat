@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:bi_chat_app/service/database_service.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
@@ -37,6 +38,8 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   Widget build(BuildContext context) {
+    Database db = Database();
+    db.messagesFromDb(1);
     return Scaffold(
       body: Center(
         child: Column(
