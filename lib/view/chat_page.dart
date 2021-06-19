@@ -30,42 +30,35 @@ class _ChatPageState extends State<ChatPage> {
     imageUrl = '';
     userId = widget.userId;
     if (widget.userId == Constants.passwordOne) {
-      id = '001';
-      peerId = '002';
+      id = Constants.userOneID;
+      peerId = Constants.userTwoID;
     } else {
-      id = '002';
-      peerId = '001';
+      id = Constants.userTwoID;
+      peerId = Constants.userOneID;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    //db.getOneMessage();
     return Scaffold(
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            StreamBuilder<List<Message>>(
-                stream: db.messagesFromDb(2),
-                builder: (context, snapshot) {
-                  return (snapshot.hasData)
-                      ? Flexible(
-                          flex: 12,
-                          child: Container(
-                            color: Colors.grey,
-                            child: Text(snapshot.data!.first.content),
-                          ),
-                        )
-                      : Flexible(
-                          flex: 12,
-                          child: Center(child: CircularProgressIndicator()));
-                }),
-            Flexible(
-              flex: 1,
-              child: Container(
-                //height: 50.0,
-                color: Colors.yellow,
-              ),
+            Expanded(
+              child: StreamBuilder<List<Message>>(
+                  stream: db.messagesFromDb(1),
+                  builder: (context, snapshot) {
+                    return (snapshot.hasData)
+                        ? ListView(
+                            children: [Text(snapshot.data!.first.content)],
+                          )
+                        : Center(child: CircularProgressIndicator());
+                  }),
+            ),
+            Container(
+              height: 50.0,
+              color: Colors.yellow,
             )
           ],
         ),

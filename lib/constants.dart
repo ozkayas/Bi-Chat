@@ -6,6 +6,9 @@ class Constants {
   static final String passwordOne = 'abc';
   static final String passwordTwo = 'xyz';
 
+  static final String userOneID = '001';
+  static final String userTwoID = '002';
+
   ///Database paths
   static final rootPath = 'messages';
 
